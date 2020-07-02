@@ -1,7 +1,6 @@
-#include "hello.h"
+
+#include "repository/PositionStreamRepository.h"
 
 int main() {
-    hello();
-
     return 0;
 }
