@@ -5,7 +5,8 @@ Position::Position() {
 
 }
 
-Position::Position(const std::string &title, const std::string &position) {
+
+Position::Position(const std::string &title, const std::string &value): title(title), value(value)  {
 
 }
 
@@ -18,11 +19,11 @@ const std::string &Position::getValue() const {
 }
 
 void Position::setTitle(const std::string &title) {
-
+    this->title = title;
 }
 
 void Position::setValue(const std::string &value) {
-
+    this->value = value;
 }
 
 bool Position::operator==(const Position &other) const {
