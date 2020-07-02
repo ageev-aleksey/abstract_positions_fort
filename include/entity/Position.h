@@ -15,11 +15,15 @@ public:
     const std::string& getValue() const;
     void setTitle(const std::string &title);
     void setValue(const std::string &value);
+
+    bool operator==(const Position &other) const;
+    bool operator!=(const Position &other) const;
+
+    friend std::ostream& operator<<(std::ostream &stream, const Position &position);
 private:
     std::string title;
     std::string value;
-
 };
 
-
+std::ostream& operator<<(std::ostream &stream, const Position &position);
 #endif //ABSTRACT_POSITIONS_POSITION_H

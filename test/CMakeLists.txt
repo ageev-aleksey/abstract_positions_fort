@@ -1,4 +1,5 @@
-file(GLOB SRC_TESTS ${CMAKE_CURRENT_LIST_DIR}/src/*.cpp)
+file(GLOB SRC_TESTS ${CMAKE_CURRENT_LIST_DIR}/src/*.cpp
+                    ${CMAKE_CURRENT_LIST_DIR}/src/util/*.cpp)
 
 set(TEST_INCLUDE_DIR ${CMAKE_CURRENT_LIST_DIR}/include)
 message(STATUS ${SRC_TESTS})

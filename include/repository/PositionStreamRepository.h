@@ -7,18 +7,18 @@
 
 #include <memory>
 #include "repository/PositionRepository.h"
+#include "serializer/PositionSerializer.h"
 
 class PositionStreamRepository : public PositionRepository {
 public:
-    explicit PositionStreamRepository(std::unique_ptr<std::iostream> stream);
+    PositionStreamRepository(std::unique_ptr<std::iostream> stream, std::unique_ptr<PositionSerializer> formatter);
     void save(const Position &position) override;
     std::list<Position> findByTitle(const std::string &title) override;
     std::list<Position> getAll() override;
     void deletePosition(const Position &position) override;
 private:
     std::unique_ptr<std::iostream> stream;
-
-
+    std::unique_ptr<PositionSerializer> serializer;
 };
 
 

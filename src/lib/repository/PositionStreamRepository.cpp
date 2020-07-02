@@ -1,6 +1,8 @@
 #include "repository/PositionStreamRepository.h"
+#include<iostream>
 
-PositionStreamRepository::PositionStreamRepository(std::unique_ptr<std::iostream> stream) {
+PositionStreamRepository::PositionStreamRepository(std::unique_ptr<std::iostream> stream,
+                                                   std::unique_ptr<PositionSerializer> serializer) {
 
 }
 
