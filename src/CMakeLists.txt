@@ -10,3 +10,9 @@ add_library(AP::LIB ALIAS abstract_positions)
 
 add_executable(app main.cpp)
 target_link_libraries(app abstract_positions)
+
+install(TARGETS app
+        RUNTIME DESTINATION ${INSTALL_PATH})
+
+install(TARGETS abstract_positions
+        ARCHIVE DESTINATION ${INSTALL_PATH})

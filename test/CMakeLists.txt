@@ -7,3 +7,6 @@ message(STATUS ${SRC_TESTS})
 add_executable(test ${SRC_TESTS})
 target_include_directories(test PRIVATE ${TEST_INCLUDE_DIR})
 target_link_libraries(test AP::LIB)
+
+install(TARGETS test
+        RUNTIME DESTINATION ${INSTALL_PATH})
