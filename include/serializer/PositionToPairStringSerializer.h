@@ -3,6 +3,10 @@
 
 #include "PositionSerializer.h"
 
+/**
+ * \brief класс реализующий текстовую сериализацию сущности \see Position в формат
+ * ключ::значение\r\nключ::значение
+ */
 class PositionToPairStringSerializer : public PositionSerializer {
 public:
     std::string serialize(const std::list<Position> &pos) const override;

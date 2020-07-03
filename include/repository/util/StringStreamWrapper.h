@@ -4,7 +4,9 @@
 #include "repository/util/StreamWrapper.h"
 #include <sstream>
 
-
+/**
+ * Обертка над std::stringstream
+ */
 class StringStreamWrapper : public StreamWrapper  {
 public:
     void clearBuffer() override;

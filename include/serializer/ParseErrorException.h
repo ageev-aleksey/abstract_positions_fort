@@ -3,6 +3,9 @@
 
 #include <stdexcept>
 
+/**
+ * \brief класс описывающий ошибку при сериализации сущности \see Position
+ */
 class ParseErrorException : public std::runtime_error {
 public:
     explicit ParseErrorException(const std::string &what);

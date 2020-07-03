@@ -8,15 +8,28 @@
 #include "repository/util/StreamWrapper.h"
 #include <unordered_set>
 
+
+/**
+ * \brief реализация хранилища \see PositionRepository использующее c++ потоки ввода/вывода
+ * для отправки записей в хранилище определяемой \see StreamWrapper, который является оберткой над
+ * потоками
+ */
 class PositionStreamRepository : public PositionRepository {
 public:
+    /**
+     *
+     * @param stream - класс определяющий где хранить
+     * @param formatter - класс определяющий в каком формате хранить
+     */
     PositionStreamRepository(std::shared_ptr<StreamWrapper> stream, std::unique_ptr<PositionSerializer> formatter);
     ~PositionStreamRepository();
     void save(const Position &position) override;
     std::list<Position> findByTitle(const std::string &title) override;
     std::list<Position> getAll() override;
     void deletePosition(const Position &position) override;
-
+    /**
+     * \brief отправка данных в хранилище. Класс автоматически не отправляет в хранилище, необходимо вызвать вручную
+     */
     void flush();
 private:
     void init();
