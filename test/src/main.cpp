@@ -6,6 +6,8 @@ bool positionRepositoryStreamTest_FindPositionByTitle();
 bool positionRepositoryStreamTest_DeletePosition();
 bool positionToPairStringSerializer_Serialize();
 bool positionToPairStringSerializer_Deserialize();
+bool positionToPairStringSerializer_Serialize2();
+bool  positionToPairStringSerializer_Deserialize2();
 bool  positionToPairStringSerializer_DeserializeInvalidFormat();
 
 
@@ -16,7 +18,9 @@ int testRun() {
     good &= positionRepositoryStreamTest_FindPositionByTitle();
     good &= positionRepositoryStreamTest_DeletePosition();
     good &= positionToPairStringSerializer_Serialize();
+    good &= positionToPairStringSerializer_Serialize2();
     good &= positionToPairStringSerializer_Deserialize();
+    good &= positionToPairStringSerializer_Deserialize2();
     good &= positionToPairStringSerializer_DeserializeInvalidFormat();
 
     if(!good) {
