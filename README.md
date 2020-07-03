@@ -1,4 +1,6 @@
-##Консольное приложение для работы с записями ключ::значение [![Build Status](https://travis-ci.com/ageev-aleksey/abstract_positions_fort.svg?branch=master)](https://travis-ci.com/ageev-aleksey/abstract_positions_fort)
+## Консольное приложение для работы с записями ключ::значение
+
+[![Build Status](https://travis-ci.com/ageev-aleksey/abstract_positions_fort.svg?branch=master)](https://travis-ci.com/ageev-aleksey/abstract_positions_fort)
 
 **Возможности:**
  - Добавление записи Ключ::Значение. Ключи могут повторятся у разных записей.
