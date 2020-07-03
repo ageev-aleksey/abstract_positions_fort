@@ -2,13 +2,15 @@
 #define ABSTRACT_POSITIONS_POSITIONSTREAMREPOSITORY_H
 
 #include <memory>
+
 #include "repository/PositionRepository.h"
 #include "serializer/PositionSerializer.h"
+#include "repository/util/StreamWrapper.h"
 #include <unordered_set>
 
 class PositionStreamRepository : public PositionRepository {
 public:
-    PositionStreamRepository(std::shared_ptr<std::iostream> stream, std::unique_ptr<PositionSerializer> formatter);
+    PositionStreamRepository(std::shared_ptr<StreamWrapper> stream, std::unique_ptr<PositionSerializer> formatter);
     ~PositionStreamRepository();
     void save(const Position &position) override;
     std::list<Position> findByTitle(const std::string &title) override;
@@ -26,7 +28,7 @@ private:
     };
 
     std::unordered_multiset<Position, PositionHash, PositionEquals> buffer;
-    std::shared_ptr<std::iostream> stream;
+    std::shared_ptr<StreamWrapper> stream;
     std::unique_ptr<PositionSerializer> serializer;
     bool isUpdate;
 };

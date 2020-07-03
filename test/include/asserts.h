@@ -1,5 +1,14 @@
 #include <iostream>
+#include <unordered_set>
 
+template<typename T>
+std::ostream& operator<<(std::ostream &stream, const std::unordered_set<T> set) {
+    stream << "std::unordered_set{ ";
+    for(const T &el : set) {
+        stream << el << " ";
+    }
+    stream << "}\n";
+}
 template <typename T>
 bool assertEq(const T& expected, const T& actual, const std::string &testName) {
     if(expected != actual) {

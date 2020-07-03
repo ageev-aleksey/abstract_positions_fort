@@ -2,10 +2,11 @@
 #include<iostream>
 #include <string>
 #include <sstream>
+#include <utility>
 
-PositionStreamRepository::PositionStreamRepository(std::shared_ptr<std::iostream> stream,
+PositionStreamRepository::PositionStreamRepository(std::shared_ptr<StreamWrapper> stream,
                                                    std::unique_ptr<PositionSerializer> serializer)
- : stream(stream), serializer(std::move(serializer)) {
+ : stream(std::move(stream)), serializer(std::move(serializer)) {
     init();
 }
 
@@ -42,10 +43,7 @@ std::list<Position> PositionStreamRepository::getAll() {
 void PositionStreamRepository::deletePosition(const Position &position) {
     isUpdate = true;
     auto itr = buffer.find(position);
-    std::cout << "distance: " << std::distance(itr, buffer.end());
     while(itr != buffer.end()) {
-        Position pos = *itr;
-        std::cout << *itr << std::endl;
         if(*itr == position) {
             auto tmp = itr;
             ++tmp;
@@ -69,12 +67,12 @@ size_t PositionStreamRepository::PositionHash::operator()(const Position &pos) c
 
 void PositionStreamRepository::flush() {
     if(isUpdate) {
-        stream->clear();
+        stream->clearStream();
+        stream->clearBuffer();
         stream->seekg(0, std::ios::beg);
-        stream->write("", 0);
         std::list<Position> posList(buffer.begin(), buffer.end());
         std::string s = serializer->serialize(posList);
-        *stream << s;
+        stream->write(s);
         stream->flush();
         isUpdate = false;
     }
@@ -88,11 +86,11 @@ void PositionStreamRepository::init() {
     if(!serializer) {
         throw std::runtime_error("Invalid serializer pointer");
     }
-    stream->clear();
+    stream->clearStream();
     stream->seekg(0, std::ios::beg);
-    std::ostringstream oss;
-    oss << stream->rdbuf();
-    std::list<Position> listPos = serializer->deserialize(oss.str());
+    std::string tmp;
+    stream->read(tmp);
+    std::list<Position> listPos = serializer->deserialize(tmp);
     for(auto &el : listPos) {
         buffer.insert(std::move(el));
     }
