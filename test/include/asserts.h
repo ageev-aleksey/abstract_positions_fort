@@ -8,6 +8,7 @@ std::ostream& operator<<(std::ostream &stream, const std::unordered_set<T> set) 
         stream << el << " ";
     }
     stream << "}\n";
+    return stream;
 }
 template <typename T>
 bool assertEq(const T& expected, const T& actual, const std::string &testName) {
