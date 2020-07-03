@@ -1,0 +1,16 @@
+dist: bionic
+language: cpp
+os:
+  - linux
+  - windows
+compiler:
+  - gcc
+  - clang
+script:
+  - mkdir build
+  - cd build
+  - cmake ..
+  - cmake --build . --target test
+  - cd test
+  - ./test
+
