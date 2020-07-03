@@ -35,4 +35,8 @@ void FileStreamWrapper::flush() {
     stream.flush();
 }
 
+bool FileStreamWrapper::isOpen() {
+    return stream.is_open();
+}
+
 

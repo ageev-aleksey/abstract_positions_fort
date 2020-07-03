@@ -3,6 +3,7 @@
 #include <string>
 #include <sstream>
 #include <utility>
+#include <algorithm>
 
 PositionStreamRepository::PositionStreamRepository(std::shared_ptr<StreamWrapper> stream,
                                                    std::unique_ptr<PositionSerializer> serializer)
@@ -30,9 +31,8 @@ std::list<Position> PositionStreamRepository::findByTitle(const std::string &tit
     if(itr == buffer.end()) {
         return res;
     }
-    for(; itr != buffer.end(); ++itr) {
-        res.push_back(*itr);
-    }
+    std::copy_if(itr, buffer.end(), std::back_inserter(res),
+            [&](const Position& pos) {return pos.getTitle() == title;});
     return res;
 }
 

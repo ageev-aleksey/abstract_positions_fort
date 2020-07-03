@@ -16,6 +16,7 @@ public:
     virtual void read(std::string &str) = 0;
     virtual void seekg(int pos, std::ios::seekdir seek) = 0;
     virtual void flush() = 0;
+    virtual bool isOpen() = 0;
 
 
 };

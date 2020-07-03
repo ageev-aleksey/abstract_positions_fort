@@ -13,7 +13,9 @@ public:
     void read(std::string &str) override;
     void seekg(int pos, std::ios::seekdir seek) override;
     void flush() override;
+    bool isOpen() override;
     std::string str();
+
 
 
 private:

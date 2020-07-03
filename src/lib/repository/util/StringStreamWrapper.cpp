@@ -30,3 +30,7 @@ void StringStreamWrapper::flush() {
 std::string StringStreamWrapper::str() {
     return stream.str();
 }
+
+bool StringStreamWrapper::isOpen() {
+    return stream.good();
+}
